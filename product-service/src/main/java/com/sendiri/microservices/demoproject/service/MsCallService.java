@@ -1,6 +1,7 @@
 package com.sendiri.microservices.demoproject.service;
 
 import okhttp3.OkHttpClient;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -12,10 +13,12 @@ import java.io.IOException;
 @Service
 public class MsCallService {
 
+    String host = "http://host.docker.internal";
+
     public Boolean verify(String jwt) throws IOException {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://localhost:8090/")
+                .baseUrl(host + ":8090/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(httpClient.build())
                 .build();

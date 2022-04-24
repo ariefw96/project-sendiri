@@ -5,7 +5,7 @@
 FROM adoptopenjdk/openjdk11:alpine-jre
 
 # Refer to Maven build -> finalName
-ARG JAR_FILE=target/demoproject-0.0.1-SNAPSHOT.jar
+ARG JAR_FILE=target/ms-product.jar
 
 # cd /opt/app
 WORKDIR /opt/app
