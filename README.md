@@ -65,6 +65,13 @@ Notes : pakai command ``.\bin\windows\kafka-console-consumer.bat --bootstrap-ser
 - Kafka data stream untuk logging aktivitas
 - Docker untuk containerization and microservices
 
+## Notes : 
+- service auth berjalan pada port 8090
+- service product berjalan apda port 8080
+
+## Related Project 
+- Copy from [here](https://github.com/ariefw96/hanya_kipas_angin) [`private`]
+
 ## Documentation
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/16435417-3436136e-1cd0-4538-b0b9-61d6ca5c9d60?action=collection%2Ffork&collection-url=entityId%3D16435417-3436136e-1cd0-4538-b0b9-61d6ca5c9d60%26entityType%3Dcollection%26workspaceId%3Db6d7df4f-7780-4574-b139-7e6ca21bfe66)
