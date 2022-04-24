@@ -70,7 +70,7 @@ Notes : pakai command ``.\bin\windows\kafka-console-consumer.bat --bootstrap-ser
 - service product berjalan apda port 8080
 
 ## Related Project 
-- Copy from [here](https://github.com/ariefw96/hanya_kipas_angin) [`private`]
+- Copy from [here](https://github.com/ariefw96/hanya_kipas_angin) 
 
 ## Documentation
 
