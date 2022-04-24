@@ -68,6 +68,7 @@ public class authController {
 
     @GetMapping("verify")
     public Boolean verifyJwt(@RequestParam("jwt") String jwt){
+        log.info("Jwt request => "+jwt);
         return authService.checkJwt(jwt);
     }
 

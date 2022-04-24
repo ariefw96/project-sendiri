@@ -4,6 +4,7 @@ import com.sendiri.microservices.demoproject.json.request.ProductRequest;
 import com.sendiri.microservices.demoproject.json.standardResponse;
 import com.sendiri.microservices.demoproject.model.ProductEntity;
 import com.sendiri.microservices.demoproject.service.KafkaService;
+import com.sendiri.microservices.demoproject.service.MsCallService;
 import com.sendiri.microservices.demoproject.service.ProductService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +14,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -36,6 +38,9 @@ public class productController {
     @Autowired
     KafkaService kafkaService;
 
+    @Autowired
+    MsCallService msCallService;
+
     @GetMapping("all")
     public List<ProductEntity> getAll(@RequestParam(value = "sort_by", required = false, defaultValue = "") String sort) {
         List<ProductEntity> prd  = productService.findAll();
@@ -48,10 +53,15 @@ public class productController {
     }
 
     @PostMapping("add")
-    public ResponseEntity<Object> uploadFile(@ModelAttribute ProductRequest productRequest) {
+    public ResponseEntity<Object> uploadFile(@ModelAttribute ProductRequest productRequest, HttpServletRequest servletRequest) {
         try {
+            String token = servletRequest.getHeader("access-token");
+            if(!msCallService.verify(token)){
+                LOG.info("UNAUTHORIZED");
+                return ResponseEntity.status(401).body("Unauthorized");
+            }
+            LOG.info("AUTHORIZED");
 
-            LOG.info("REQUEST FILE : " + productRequest.getImage().getOriginalFilename());
             //UPLOAD AN IMAGE
             String pathUrlFile = productService.uploadanImage(productRequest.getImage());
 
