@@ -109,9 +109,15 @@ public class productController {
     }
 
     @PutMapping(value = "update/{id}")
-    public ResponseEntity<Object> updateProduct(@PathVariable("id") String id, ProductRequest request){
+    public ResponseEntity<Object> updateProduct(@PathVariable("id") String id, ProductRequest request, HttpServletRequest servletRequest){
         try{
             LOG.info("REQUEST : {}" + request);
+            String token = servletRequest.getHeader("access-token");
+            if(!msCallService.verify(token)){
+                LOG.info("UNAUTHORIZED");
+                return ResponseEntity.status(401).body("Unauthorized");
+            }
+            LOG.info("AUTHORIZED");
 
             //GET EXISTING PRODUCT
             ProductEntity product = productService.findProduct(Long.valueOf(id));
@@ -154,8 +160,14 @@ public class productController {
     }
 
     @DeleteMapping(value = "delete/{id}")
-    public ResponseEntity<Object> deleteProduct(@PathVariable("id") String id){
+    public ResponseEntity<Object> deleteProduct(@PathVariable("id") String id, HttpServletRequest servletRequest){
         try{
+            String token = servletRequest.getHeader("access-token");
+            if(!msCallService.verify(token)){
+                LOG.info("UNAUTHORIZED");
+                return ResponseEntity.status(401).body("Unauthorized");
+            }
+            LOG.info("AUTHORIZED");
             Long deletedId = Long.valueOf(id);
 
             ProductEntity product = productService.findProduct(Long.valueOf(id));
