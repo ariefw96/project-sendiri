@@ -54,6 +54,11 @@ public class authController {
     public ResponseEntity<Object> registerUser(@RequestBody AuthRequest authRequest){
         log.info("Register request {}",authRequest);
         try{
+            AuthModel findUser = authService.findByUsername(authRequest.getUsername());
+            if(findUser != null){
+                return ResponseEntity.status(400).body("Username "+authRequest.getUsername()+" sudah terdaftar.");
+            }
+
             AuthModel authModel = new AuthModel();
             authModel.setUsername(authRequest.getUsername());
             authModel.setPassword(authRequest.getPassword());

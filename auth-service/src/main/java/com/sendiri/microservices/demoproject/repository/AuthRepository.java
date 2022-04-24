@@ -11,4 +11,6 @@ public interface AuthRepository extends JpaRepository<AuthModel, Long> {
     @Query(value = "select * from user where username = :param1 and password = :param2", nativeQuery = true)
     AuthModel findUser(String param1, String param2);
 
+    @Query(value = "select * from user where username = :param", nativeQuery = true)
+    AuthModel findByUsername(String param);
 }

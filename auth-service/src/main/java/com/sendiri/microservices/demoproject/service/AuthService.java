@@ -40,4 +40,8 @@ public class AuthService {
     public void updateJwt(AuthModel authModel){
         authRepository.save(authModel);
     }
+
+    public AuthModel findByUsername(String username){
+        authRepository.findByUsername(username);
+    }
 }
