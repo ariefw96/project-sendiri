@@ -53,6 +53,9 @@ ENTRYPOINT ["java","-jar","app.jar"]
 
 ![image](https://user-images.githubusercontent.com/70320451/164895463-08f0ac12-d8f6-47b6-8093-e493b057da1a.png)
 
+![image](https://user-images.githubusercontent.com/70320451/164956388-fc38b627-41d4-43e4-adf6-79664ae77084.png)
+
+
 Notes : pakai command ``.\bin\windows\kafka-console-consumer.bat --bootstrap-server <host:port> --topic <topic> --from-beginning`` untuk stream data kafka [windows]
 ![image](https://user-images.githubusercontent.com/70320451/164895887-93db916e-bf37-457a-aa2f-09f1da0dfc75.png)
 
@@ -64,6 +67,13 @@ Notes : pakai command ``.\bin\windows\kafka-console-consumer.bat --bootstrap-ser
 - Java Stream untuk filter dan sort produk
 - Kafka data stream untuk logging aktivitas
 - Docker untuk containerization and microservices
+
+## Notes : 
+- service auth berjalan pada port 8090
+- service product berjalan apda port 8080
+
+## Related Project 
+- Copy from [here](https://github.com/ariefw96/hanya_kipas_angin) 
 
 ## Documentation
 
